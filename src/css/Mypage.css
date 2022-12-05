@@ -1,0 +1,31 @@
+.topButton {
+    margin-top: 5px;
+    padding-bottom: 5px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.myPageButton {
+    width: 100%;
+}
+
+.myPageButton .button {
+    background: #f16272;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.button:hover {
+    background: #ee3e52;
+}

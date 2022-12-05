@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPage</title>
+</head>
+
+<body>
+    <div class="form-wrapper">
+        <h1>Mypage</h1>
+        <div class="topButton">
+            <div class="myPageButton">
+                <input type="button" class="button left" value="戻る" id="back">
+                <input type="button" class="button right" value="Registration" id="regi" style="display: none;">
+            </div>
+        </div>
+        <div class="tabs">
+            <input id="profileData" type="radio" name="tab_item">
+            <label class="tab_item" for="profileData">アカウント情報</label>
+            <input id="paperData" type="radio" name="tab_item">
+            <label class="tab_item" for="paperData">論文情報</label>
+
+            <div class="tab_content" id="profileData_content">
+                <div class="tab_content_description">
+                    <p class="c-txtsp" id="profileDefaultMessage">Now Loading...</p>
+                    <table class="profile-table" id="Profile" style="visibility: hidden;">
+                        <tr>
+                            <th class="contact-item1">Name</th>
+                            <td class="contact-body1">
+                                <div id="Name" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">Organization</th>
+                            <td class="contact-body1">
+                                <div id="Org" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">Title</th>
+                            <td class="contact-body1">
+                                <div id="Title" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr id="Department">
+                            <th class="contact-item1">Department</th>
+                            <td class="contact-body1">
+                                <div id="DepBody" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">Country</th>
+                            <td class="contact-body1">
+                                <div id="Country" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">Postcode</th>
+                            <td class="contact-body1">
+                                <div id="Postcode" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">City</th>
+                            <td class="contact-body1">
+                                <div id="City" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">State</th>
+                            <td class="contact-body1">
+                                <div id="State" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">Address Line</th>
+                            <td class="contact-body1">
+                                <div id="AddressLine" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr id="AL2">
+                            <th class="contact-item1">Address Line 2</th>
+                            <td class="contact-body1">
+                                <div id="AL2Body" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="contact-item1">Timezone</th>
+                            <td class="contact-body1">
+                                <div id="Timezone" class="tbInner"></div>
+                            </td>
+                        </tr>
+
+                        <tr id="PhoneNumber">
+                            <th class="contact-item1">Phone number</th>
+                            <td class="contact-body1">
+                                <div id="PhoneBody" class="tbInner"></div>
+                            </td>
+                        </tr>
+                        <!-- 
+                        <tr>
+                            <th class="contact-item1">QR code</th>
+                            <td align="center" class="contact-body1">
+                                <p id="NowL">Now Loading...</p>
+                                <div id="onImg">
+                                    <img class="img1" id="qr">
+                                </div>
+                            </td>
+                        </tr> 
+                        -->
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab_content" id="paperData_content">
+                <div class="tab_content_description">
+                    <p class="c-txtsp" id="paperDefaultMessage">Now Loading...</p>
+                    <p class="c-txtsp" id="paperExists" style="display: none;">Paper does not posted.</p>
+                    <table class="paper-table" id="Paper" style="visibility: hidden;">
+                        <tr>
+                            <th class="contact-item1">Title</th>
+                            <th class="contact-item1">Filename</th>
+                            <th class="contact-item1">Progress</th>
+                            <th class="contact-item1" id="P0ID">ID</th>
+                        </tr>
+                        <tr id="Paper1" style="visibility: hidden;">
+                            <td class="contact-body1" id="P1Title">
+                                <div class="tbInner" id="P1TitleBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P1File">
+                                <div class="tbInner" id="P1FileBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P1Progress">
+                                <div class="tbInner" id="P1ProgressBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P1ID">
+                                <div class="tbInner" id="P1IDBox"></div>
+                            </td>
+                        </tr>
+                        <tr id="Paper2" style="visibility: hidden;">
+                            <td class="contact-body1" id="P2Title">
+                                <div class="tbInner" id="P2TitleBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P2File">
+                                <div class="tbInner" id="P2FileBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P2Progress">
+                                <div class="tbInner" id="P2ProgressBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P2ID">
+                                <div class="tbInner" id="P2IDBox"></div>
+                            </td>
+                        </tr>
+                        <tr id="Paper3" style="visibility: hidden;">
+                            <td class="contact-body1" id="P3Title">
+                                <div class="tbInner" id="P3TitleBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P3File">
+                                <div class="tbInner" id="P3FileBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P3Progress">
+                                <div class="tbInner" id="P3ProgressBox"></div>
+                            </td>
+                            <td class="contact-body1" id="P3ID">
+                                <div class="tbInner" id="P3IDBox"></div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-footer">
+        </div>
+    </div>
+
+    <script src="./Mypage.js"></script>
+</body>
+
+</html>

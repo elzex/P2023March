@@ -1,0 +1,39 @@
+.profile-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px black solid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-table th {
+    background-color: whitesmoke;
+    border: 2px black solid;
+    width: auto;
+}
+
+.profile-table td {
+    padding: 2px;
+    border: 2px black solid;
+    width: auto;
+}
+
+.paper-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px black solid;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.paper-table th {
+    background-color: whitesmoke;
+    border: 2px black solid;
+    width: 25%;
+}
+
+.paper-table td {
+    padding: 2px;
+    border: 2px black solid;
+    width: auto;
+}
