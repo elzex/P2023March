@@ -1,18 +1,15 @@
 import "../css/Form.css";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, userSignUp, userSignIn } from "../firebaseModule/Authentication";
+import { userSignUp, userCheck } from "../firebaseModule/Authentication";
 import { db } from "../firebaseModule/Firestore";
 import {
     doc, setDoc, serverTimestamp
 } from "firebase/firestore";
-import { userCheck } from "../firebaseModule/Authentication";
 
 window.onload = async function () {
     userCheck().then((user) => {
         console.log(user.uid);
         window.location.href = "./Portal/Home.html"
-    }).catch(() => {
-    });
+    })
 }
 
 const signUpForm = document.querySelector(".signUp");
@@ -35,37 +32,17 @@ function SignUp(mail, pass) {
         const docRef = doc(db, "Account", user.uid);
         await setDoc(docRef, {
             UserID: user.uid,
-            AccountType: 0,
-            Reviewer: false,
-            NumOfPaper: 0,
-        }).catch((e) => {
-            const eCode = e.code;
-            const eMessage = e.message;
-            console.log(eCode, eMessage);
-            alert(eCode, eMessage)
-        });
-        const ProfileRef = doc(docRef, "UserData", "Profile");
-        await setDoc(ProfileRef, {
-            eMail: signUpForm.eMail.value,
-            FirstName: signUpForm.FirstName.value,
-            //MiddleName: signUpForm.MiddleName.value,
-            FamilyName: signUpForm.FamilyName.value,
+            Name: signUpForm.Name.value,
             Affiliation: signUpForm.Aff.value,
-            Title: signUpForm.Title.value,
-            //Department: signUpForm.Department.value,
-            Country: signUpForm.Country.value,
-            PostCode: signUpForm.PostCode.value,
-            City: signUpForm.City.value,
-            State: signUpForm.State.value,
-            AddressLine1: signUpForm.AddressLine1.value,
-            AddressLine2: signUpForm.AddressLine2.value,
-            Timezone: signUpForm.Timezone.value,
+            Job: signUpForm.Job.value,
+            eMail: signUpForm.eMail.value,
             PhoneNumber: signUpForm.PhoneNumber.value,
-            //FaxNumber: signUpForm.FaxNumber.value,
-            //sMail: signUpForm.sMail.value,
-            //ccMail: signUpForm.ccMail.value,
-            //HPURL: signUpForm.HPURL.value,
-            //comment: signUpForm.comment.value,
+            Title: signUpForm.Title.value,
+            Joint: signUpForm.Joint.value,
+            //PreferredTime: signUpForm.PreferredTime.value,
+            //Schedule: signUpForm.Schedule.value,
+            //Support: signUpForm.Support.value,
+            Comment: signUpForm.Comment.value,
             signUpTime: serverTimestamp()
         }).catch((e) => {
             const eCode = e.code;
