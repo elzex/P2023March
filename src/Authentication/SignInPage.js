@@ -17,7 +17,14 @@ signInForm.addEventListener("submit", async function (e) {
     //console.log(mail, pass);
     let user = await userSignIn(mail, pass);
     //let user = await userCheck();
-    if (user) {
-        window.location.href = "../Portal/Home.html";
-    }
+    userSignIn(mail, pass).then((user) => {
+        if (user) {
+            window.location.href = "../Portal/Home.html";
+        }
+    }).catch((e) => {
+        const eCode = e.code;
+        const eMessage = e.message;
+        console.log(eCode, eMessage);
+        alert(eCode, eMessage);
+    });
 });

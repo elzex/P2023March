@@ -4,7 +4,7 @@ import { db } from "../../firebaseModule/Firestore";
 async function getUserData(uid) {
     const docRef = doc(db, "Account", uid);
     const profileRef = doc(docRef, "UserData", "Profile");
-    const docSnap = await getDoc(profileRef);
+    const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
         //console.log(docSnap.data());
         return docSnap.data();

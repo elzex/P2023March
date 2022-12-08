@@ -5,13 +5,13 @@ import "../css/Table.css";
 
 import { userCheck } from "../firebaseModule/Authentication";
 import { setUserData } from "./Mypage/setProfileData";
-import { setPaperData } from "./Mypage/setPaperData"
+//import { setPaperData } from "./Mypage/setPaperData"
 
 window.onload = function () {
     userCheck().then((user) => {
         console.log(user.uid);
         setUserData(user.uid);
-        setPaperData(user.uid);
+        //setPaperData(user.uid);
     }).catch(() => {
         window.location.href = "../index.html";
     });
