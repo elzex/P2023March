@@ -8,8 +8,10 @@ import {
 window.onload = async function () {
     userCheck().then((user) => {
         console.log(user.uid);
-        window.location.href = "./Portal/Home.html"
-    })
+        window.location.href = "../Portal/Home.html"
+    }).catch(() => {
+        //console.log("test");
+    });
 }
 
 const signUpForm = document.querySelector(".signUp");

@@ -16,10 +16,10 @@ module.exports = {
       }
     ]
   },
-  entry: './src/Portal/Mypage.js',
+  entry: './src/Authentication/SignUpPage.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'Portal/script/Mypage.js'
+    filename: 'Authentication/script/SignUpPage.js'
   },
   watch: true
 }
