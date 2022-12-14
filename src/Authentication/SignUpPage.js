@@ -14,17 +14,41 @@ window.onload = async function () {
     });
 }
 
-const signUpForm = document.querySelector(".signUp");
-signUpForm.addEventListener("submit", (e) => {
+//const signUpForm = document.querySelector(".signUp");
+const err = document.querySelector(".error");
+const form = document.forms[0];
+const perr = document.getElementById("participation-err");
+const passerr = document.getElementById("pass-err");
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (signUpForm.Password1.value != signUpForm.Password2.value) {
-        alert("Password does not match");
-        signUpForm.Password1.value = "";
-        signUpForm.Password2.value = "";
+    let flag = false;
+    let pass1 = e.target.Password1;
+    let pass2 = e.target.Password2;
+    const mail = e.target.eMail.value;
+    const ponly = document.getElementById("ponly");
+    const title = e.target.Title.value;
+    if (pass1.value != pass2.value) {
+        pass1.value = "";
+        pass2.value = "";
+        passerr.textContent = "パスワードが一致しません";
+    }
+
+    if (ponly.checked) {
+        if (title != "") {
+            perr.textContent = "どちらかを片方のみを入力してください";
+        } else {
+            flag = true;
+        }
     } else {
-        const mail = signUpForm.eMail.value;
-        const pass = signUpForm.Password1.value;
-        SignUp(mail, pass)
+        if (title == "") {
+            perr.textContent = "どちらかを片方のみを入力してください"
+        } else {
+            flag = true;
+        }
+    }
+
+    if (flag) {
+        SignUp(mail, pass1);
     }
 });
 

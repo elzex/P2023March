@@ -33,15 +33,11 @@
                 <input type="text" name="PhoneNumber" placeholder="（例）0123456789" required>
             </div>
             <div class="form-item">
-                <label for="Title">*講演題目</label>
+                <label for="Title">講演題目</label>
                 <input type="text" name="Title" placeholder="">
-            </div>
-            <div class="form-item">
                 <label for="Participate">参加のみ</label>
-                <input type="checkbox" name="Checkbox">
-                <!--
-                    ここのチェックボックス周りをちゃんと仕上げる
-                -->
+                <input type="checkbox" name="Participate" id="ponly">
+                <div class="error" id="participation-err"></div>
             </div>
             <div class="form-item">
                 <label for="Joint">*連名者</label><br>
@@ -72,10 +68,9 @@
             <div class="form-item">
                 <label for="Password1">*パスワード</label>
                 <input type="password" name="Password1" placeholder="パスワード" required>
-            </div>
-            <div class="form-item">
                 <label for="Password2">*パスワード（確認）</label>
                 <input type="password" name="Password2" placeholder="パスワード（確認）" required>
+                <div class="error" id="pass-err"></div>
             </div>
             <div class="form-item">
                 <label for="DPA">利用規約</label>

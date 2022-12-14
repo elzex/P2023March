@@ -146,3 +146,8 @@ select::-ms-expand {
     resize: vertical;
     font-family: 'FontAwesome', sans-serif;
 }
+
+.error {
+    color: red;
+    font-weight: bold;
+}
