@@ -4,8 +4,9 @@ import { db } from "../firebaseModule/Firestore";
 import {
     doc, setDoc, serverTimestamp
 } from "firebase/firestore";
-import { generateReference, uploadFiles } from "../firebaseModule/Storage";
+import { generateReference, uploadDataURL } from "../firebaseModule/Storage";
 import QRCode from 'qrcode';
+import { async } from "@firebase/util";
 
 window.onload = async function () {
     userCheck().then((user) => {
@@ -90,7 +91,11 @@ function SignUp(mail, pass) {
             eMail: form.eMail.value,
             signUpTime: serverTimestamp()
         }).then(() => {
-            window.location.href = "../Portal/Home.html"
+            genQR(user.uid).then(async (code) => {
+                const ref = generateReference(user.uid + "/" + user.uid + ".png");
+                await uploadDataURL(ref, code);
+                window.location.href = "../Portal/Home.html";
+            });
         }).catch((e) => {
             const eCode = e.code;
             const eMessage = e.message;
@@ -100,4 +105,14 @@ function SignUp(mail, pass) {
     })
 }
 
-//https://github.com/soldair/node-qrcode
+function genQR(uid) {
+    return new Promise((resolve, reject) => {
+        let code;
+        QRCode.toDataURL(uid, function (err, url) {
+            code = url;
+        });
+        console.log(code);
+        console.log(typeof (code));
+        resolve(code);
+    });
+}
