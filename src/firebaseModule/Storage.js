@@ -46,13 +46,17 @@ export async function delFile(ref) {
 }
 
 export async function delFolder(ref) {
-    listAll(ref).then((res) => {
-        res.items.forEach((itemRef) => {
-            deleteObject(itemRef);
+    return new Promise((resolve, reject) => {
+        listAll(ref).then((res) => {
+            res.items.forEach(async (itemRef) => {
+                console.log("item", itemRef);
+                await deleteObject(itemRef).then(() => {
+                    console.log("file delete complete");
+                });
+            });
+            resolve();
+        }).catch((e) => {
+            reject(e);
         });
-    }).catch((e) => {
-        const eCode = e.code;
-        const eMessage = e.message;
-        console.log(eCode, eMessage);
     });
 }

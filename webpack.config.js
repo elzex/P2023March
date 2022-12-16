@@ -22,10 +22,10 @@ module.exports = {
       config: [__filename]
     }
   },
-  entry: './src/Authentication/SignUpPage.js',
+  entry: './src/Portal/Home.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'Authentication/script/SignUpPage.js'
+    filename: 'Portal/script/Home.js'
   },
   watch: true,
 }

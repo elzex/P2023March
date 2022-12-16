@@ -65,7 +65,7 @@ export var userCheck = () => {
 export async function userDeleteAccount() {
     const user = auth.currentUser;
     deleteUser(user).then(() => {
-        console.log("Delete complete");
+        console.log("Account delete complete");
     }).catch((e) => {
         const eCode = e.code;
         const eMessage = e.message;

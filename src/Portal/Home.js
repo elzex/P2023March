@@ -2,7 +2,7 @@ import "../css/Form.css";
 import { userSignOut, userCheck, userDeleteAccount, auth } from "../firebaseModule/Authentication";
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebaseModule/Firestore";
-import { genRefList, delFolder } from "../firebaseModule/Storage";
+import { genRefList, delFolder, generateReference, testfunc } from "../firebaseModule/Storage";
 
 window.onload = async function () {
     let user = await userCheck();
@@ -37,6 +37,8 @@ deleteAccount.addEventListener("click", function (e) {
     e.preventDefault();
 
     deleteUserData().then(() => {
+        //await userDeleteAccount();
+        //alert("");
         window.location.href = "../index.html";
     }).catch((e) => {
         const eCode = e.code;
@@ -50,8 +52,8 @@ function deleteUserData() {
         const id = auth.currentUser.uid;
         const docRef = doc(db, "Account", id);
         const fileRefList = genRefList(id);
-        await deleteDoc(docRef);
-        await delFolder(fileRefList);
+        await deleteDoc(docRef).then(delFolder(fileRefList));
+        //await delFolder(fileRefList);
         await userDeleteAccount();
         resolve();
     });
