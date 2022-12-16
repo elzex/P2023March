@@ -1,5 +1,4 @@
 const path = require('path');
-//var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -29,9 +28,4 @@ module.exports = {
     filename: 'Authentication/script/SignUpPage.js'
   },
   watch: true,
-  /*
-  plugins: [
-    new HardSourceWebpackPlugin()
-  ]
-  */
 }

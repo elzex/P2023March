@@ -4,6 +4,8 @@ import { db } from "../firebaseModule/Firestore";
 import {
     doc, setDoc, serverTimestamp
 } from "firebase/firestore";
+import { generateReference, uploadFiles } from "../firebaseModule/Storage";
+import QRCode from 'qrcode';
 
 window.onload = async function () {
     userCheck().then((user) => {
@@ -14,68 +16,88 @@ window.onload = async function () {
     });
 }
 
-//const signUpForm = document.querySelector(".signUp");
-const err = document.querySelector(".error");
+
 const form = document.forms[0];
 const perr = document.getElementById("participation-err");
 const passerr = document.getElementById("pass-err");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let flag = false;
+    passerr.textContent = "";
+    perr.textContent = "";
+    const mail = e.target.eMail.value;
+    const part = e.target.Participate.value;
+    const title = e.target.Title.value;
+    let flag = true;
     let pass1 = e.target.Password1;
     let pass2 = e.target.Password2;
-    const mail = e.target.eMail.value;
-    const ponly = document.getElementById("ponly");
-    const title = e.target.Title.value;
+
     if (pass1.value != pass2.value) {
         pass1.value = "";
         pass2.value = "";
         passerr.textContent = "パスワードが一致しません";
+        flag = false;
     }
 
-    if (ponly.checked) {
-        if (title != "") {
-            perr.textContent = "どちらかを片方のみを入力してください";
-        } else {
-            flag = true;
-        }
-    } else {
-        if (title == "") {
-            perr.textContent = "どちらかを片方のみを入力してください"
-        } else {
-            flag = true;
-        }
+    if (part == "Y" && title == "") {
+        perr.textContent = "講演題目を入力してください"
+        flag = false;
     }
 
     if (flag) {
-        SignUp(mail, pass1);
+        SignUp(mail, pass1.value);
+        //console.log("test");
+        //console.log(pass1);
+        //console.log(form.Name.value);
     }
 });
 
+const participate = document.getElementById("Participate");
+let tForm = document.getElementById("tForm");
+participate.onchange = function () {
+    let v = participate.value;
+    if (v == "Y") {
+        tForm.style.display = "block";
+    } else {
+        tForm.style.display = "none";
+        tForm.value = "";
+    }
+}
+
 function SignUp(mail, pass) {
+    const v = participate.value;
+    let titlevalue;
+    if (v == "Y") {
+        titlevalue = form.Title.value;
+    } else {
+        titlevalue = "Participation only";
+    }
+
     userSignUp(mail, pass).then(async (user) => {
         console.log(user);
         const docRef = doc(db, "Account", user.uid);
         await setDoc(docRef, {
+            Affiliation: form.Aff.value,
+            Comment: form.Comment.value,
+            Job: form.Job.value,
+            Joint: form.Joint.value,
+            Name: form.Name.value,
+            PhoneNumber: form.PhoneNumber.value,
+            PreferredTime: form.PreferredTime.value,
+            Schedule: form.Schedule.value,
+            Support: form.Support.value,
+            Title: titlevalue,
             UserID: user.uid,
-            Name: signUpForm.Name.value,
-            Affiliation: signUpForm.Aff.value,
-            Job: signUpForm.Job.value,
-            eMail: signUpForm.eMail.value,
-            PhoneNumber: signUpForm.PhoneNumber.value,
-            Title: signUpForm.Title.value,
-            Joint: signUpForm.Joint.value,
-            //PreferredTime: signUpForm.PreferredTime.value,
-            //Schedule: signUpForm.Schedule.value,
-            //Support: signUpForm.Support.value,
-            Comment: signUpForm.Comment.value,
+            eMail: form.eMail.value,
             signUpTime: serverTimestamp()
+        }).then(() => {
+            window.location.href = "../Portal/Home.html"
         }).catch((e) => {
             const eCode = e.code;
             const eMessage = e.message;
             console.log(eCode, eMessage);
             alert(eCode, eMessage)
         });
-        window.location.href = "../Portal/Home.html"
     })
 }
+
+//https://github.com/soldair/node-qrcode

@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカウント登録ページ</title>
+    <title>参加登録ページ</title>
 </head>
 
 <body>
     <div class="form-wrapper">
-        <h1>Sign Up</h1>
+        <h1>参加申し込みフォーム</h1>
         <form class="signUp">
             <div class="form-item">
                 <label for="FirstName">*氏名</label>
@@ -33,10 +33,15 @@
                 <input type="text" name="PhoneNumber" placeholder="（例）0123456789" required>
             </div>
             <div class="form-item">
-                <label for="Title">講演題目</label>
-                <input type="text" name="Title" placeholder="">
-                <label for="Participate">参加のみ</label>
-                <input type="checkbox" name="Participate" id="ponly">
+
+                <label for="Participate">*参加形態</label>
+                <select id="Participate" name="Participate" required>
+                    <option value="">選択してください</option>
+                    <option value="Y">発表有</option>
+                    <option value="N">参加のみ</option>
+                </select>
+                <input type="text" name="Title" placeholder="講演題目" style="display: none;" id="tForm">
+
                 <div class="error" id="participation-err"></div>
             </div>
             <div class="form-item">
@@ -45,21 +50,25 @@
             </div>
             <div class="form-item">
                 <label for="PreferredTime">希望発表時間帯</label>
-                <input type="text" name="PrefferedTime" placeholder="">
+                <input type="text" name="PreferredTime" placeholder="">
             </div>
             <div class="form-item">
                 <label for="Schedule">*出張日程</label>
-                <!--
-                    ラジオボタン
-                    日帰り/１泊/２泊
-                -->
+                <select name="Schedule" required>
+                    <option value="">選択してください</option>
+                    <option value="日帰り">日帰り</option>
+                    <option value="１泊">１泊</option>
+                    <option value="２泊">２泊</option>
+                </select>
             </div>
             <div class="form-item">
                 <label for="Support">*旅費の援助</label>
-                <!--
-                    ラジオボタン
-                    希望する/しない
-                -->
+                <select name="Support" required>
+                    <option value="">選択してください</option>
+                    <option value="Yes">希望する</option>
+                    <option value="No">希望しない</option>
+                </select>
+                <!--説明を書く-->
             </div>
             <div class="form-item">
                 <label for="Comment">その他</label><br>
@@ -72,21 +81,20 @@
                 <input type="password" name="Password2" placeholder="パスワード（確認）" required>
                 <div class="error" id="pass-err"></div>
             </div>
-            <div class="form-item">
-                <label for="DPA">利用規約</label>
-                <a href="" target="_blank">test</a>
-                <input type="checkbox" name="Checkbox" required>
-            </div>
 
             <div class="button-panel">
                 <input type="submit" class="button" value="登録">
             </div>
         </form>
         <div class="form-footer">
-            <label for="signIn">アカウントが作成済みの場合→</label>
+            <label for="signIn">参加申し込み済みの場合→</label>
             <a href="./SignInPage.html">サインイン</a>
         </div>
+
     </div>
+
+    <canvas id="canvas"></canvas>
+    <div id="res"></div>
 
     <script src="./script/SignUpPage.js"></script>
 </body>
