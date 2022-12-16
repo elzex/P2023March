@@ -6,7 +6,6 @@ import {
 } from "firebase/firestore";
 import { generateReference, uploadDataURL } from "../firebaseModule/Storage";
 import QRCode from 'qrcode';
-import { async } from "@firebase/util";
 
 window.onload = async function () {
     userCheck().then((user) => {
@@ -91,10 +90,11 @@ function SignUp(mail, pass) {
             eMail: form.eMail.value,
             signUpTime: serverTimestamp()
         }).then(() => {
-            genQR(user.uid).then(async (code) => {
+            genQR(user.uid).then((code) => {
                 const ref = generateReference(user.uid + "/" + user.uid + ".png");
-                await uploadDataURL(ref, code);
-                window.location.href = "../Portal/Home.html";
+                uploadDataURL(ref, code).then(() => {
+                    window.location.href = "../Portal/Home.html";
+                });
             });
         }).catch((e) => {
             const eCode = e.code;

@@ -24,13 +24,14 @@ export async function uploadFiles(ref, file) {
     });
 }
 
-export async function uploadDataURL(ref, url) {
-    uploadString(ref, url, 'data_url').then((snapshot) => {
-        console.log('Uploaded a data_url string!');
-    }).catch((e) => {
-        const eCode = e.code;
-        const eMessage = e.message;
-        console.log(eCode, eMessage);
+export function uploadDataURL(ref, url) {
+    return new Promise((resolve, reject) => {
+        uploadString(ref, url, 'data_url').then((snapshot) => {
+            console.log('Uploaded a data_url string!');
+            resolve()
+        }).catch((e) => {
+            reject(e);
+        });
     });
 }
 
