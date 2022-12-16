@@ -17,26 +17,32 @@ async function getUserData(uid) {
 const msg = document.getElementById("profileDefaultMessage");
 const tableDisplay = document.getElementById("Profile");
 const Table = document.getElementsByClassName("tbInner");
+const TabTitle = document.getElementById("Title");
 export async function setUserData(id) {
     const data = await getUserData(id);
     if (data != 0) {
-        let userName;
-        userName = data.FirstName + " " + data.FamilyName;
+        let parValue;
+        if (data.Title == "Participation only") {
+            TabTitle.style.display = "none";
+            parValue = "参加のみ";
+        } else {
+            parValue = "講演有り";
+            Table.TitleBody.innerHTML = data.Title;
+        }
+        Table.ParticipationBody.innerHTML = parValue;
 
         displayControll(data);
         //console.log(userName);
-        Table.Name.innerHTML = userName;
         Table.Aff.innerHTML = data.Affiliation;
-        Table.Title.innerHTML = data.Title;
-        //Table.DepBody.innerHTML = data.Department;
-        Table.Country.innerHTML = data.Country;
-        Table.Postcode.innerHTML = data.PostCode;
-        Table.City.innerHTML = data.City;
-        Table.State.innerHTML = data.State;
-        Table.AddressLine.innerHTML = data.AddressLine1;
-        Table.AL2Body.innerHTML = data.AddressLine2;
-        Table.Timezone.innerHTML = data.Timezone;
+        Table.Comment.innerHTML = data.Comment;
+        Table.Job.innerHTML = data.Job;
+        Table.Joint.innerHTML = data.Joint;
+        Table.Mail.innerHTML = data.eMail;
+        Table.Name.innerHTML = data.Name;
         Table.PhoneBody.innerHTML = data.PhoneNumber;
+        Table.Preferred.innerHTML = data.PreferredTime;
+        Table.Schedule.innerHTML = data.Schedule;
+        Table.Support.innerHTML = data.Support;
         msg.style.display = "none";
         tableDisplay.style.visibility = "visible";
     }
