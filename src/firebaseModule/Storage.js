@@ -1,9 +1,13 @@
-import { async } from "@firebase/util";
 import { app } from "./config";
-import { getStorage, ref, uploadString } from "firebase/storage";
+import { getStorage, ref, uploadString, deleteObject, listAll } from "firebase/storage";
 
 const storage = getStorage(app);
 //const storageRef = ref(storage);
+
+export function genRefList(path) {
+    const listRef = ref(storage, path);
+    return listRef;
+}
 
 export function generateReference(path) {
     const reference = ref(storage, path);
@@ -30,3 +34,24 @@ export async function uploadDataURL(ref, url) {
     });
 }
 
+export async function delFile(ref) {
+    deleteObject(ref).then(() => {
+        console.log("Storage delete complete");
+    }).catch((e) => {
+        const eCode = e.code;
+        const eMessage = e.message;
+        console.log(eCode, eMessage);
+    });
+}
+
+export async function delFolder(ref) {
+    listAll(ref).then((res) => {
+        res.items.forEach((itemRef) => {
+            deleteObject(itemRef);
+        });
+    }).catch((e) => {
+        const eCode = e.code;
+        const eMessage = e.message;
+        console.log(eCode, eMessage);
+    });
+}

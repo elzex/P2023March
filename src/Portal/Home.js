@@ -2,6 +2,7 @@ import "../css/Form.css";
 import { userSignOut, userCheck, userDeleteAccount, auth } from "../firebaseModule/Authentication";
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebaseModule/Firestore";
+import { genRefList, delFolder } from "../firebaseModule/Storage";
 
 window.onload = async function () {
     let user = await userCheck();
@@ -32,25 +33,26 @@ signOutButton.addEventListener("click", () => {
 });
 
 const deleteAccount = document.getElementById("delAccount");
-deleteAccount.addEventListener("click", async function (e) {
+deleteAccount.addEventListener("click", function (e) {
     e.preventDefault();
-    await deleteUserData();
-    userDeleteAccount();
-    window.location.href = "../index.html";
+
+    deleteUserData().then(() => {
+        window.location.href = "../index.html";
+    }).catch((e) => {
+        const eCode = e.code;
+        const eMessage = e.message;
+        console.log(eCode, eMessage);
+    })
 });
 
-async function deleteUserData() {
-    const id = auth.currentUser.uid;
-    const docRef = doc(db, "Account", id);
-    const docSnap = await getDoc(docRef);
-    const NumOfPaper = docSnap.data().NumOfPaper;
-    console.log(NumOfPaper);
-    for (let i = 1; i <= NumOfPaper; i++) {
-        const papRef = doc(docRef, "Paper", String(i));
-        await deleteDoc(papRef);
-    }
-    const profileRef = doc(docRef, "UserData", "Profile");
-    await deleteDoc(profileRef);
-    await deleteDoc(docRef);
-    alert("アカウントの削除が完了しました");
+function deleteUserData() {
+    return new Promise(async (resolve) => {
+        const id = auth.currentUser.uid;
+        const docRef = doc(db, "Account", id);
+        const fileRefList = genRefList(id);
+        await deleteDoc(docRef);
+        await delFolder(fileRefList);
+        await userDeleteAccount();
+        resolve();
+    });
 }

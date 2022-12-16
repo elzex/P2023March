@@ -62,7 +62,7 @@ export var userCheck = () => {
 };
 
 //DeleteUserAccount
-export function userDeleteAccount() {
+export async function userDeleteAccount() {
     const user = auth.currentUser;
     deleteUser(user).then(() => {
         console.log("Delete complete");
