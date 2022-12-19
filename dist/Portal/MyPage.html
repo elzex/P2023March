@@ -21,7 +21,7 @@
             <input id="profileData" type="radio" name="tab_item">
             <label class="tab_item" for="profileData">アカウント情報</label>
             <input id="paperData" type="radio" name="tab_item">
-            <label class="tab_item" for="paperData">論文情報</label>
+            <label class="tab_item" for="paperData">アブストラクト</label>
 
             <div class="tab_content" id="profileData_content">
                 <div class="tab_content_description">
@@ -128,58 +128,14 @@
 
             <div class="tab_content" id="paperData_content">
                 <div class="tab_content_description">
-                    <p class="c-txtsp" id="paperDefaultMessage">Now Loading...</p>
-                    <p class="c-txtsp" id="paperExists" style="display: none;">Paper does not posted.</p>
-                    <table class="paper-table" id="Paper" style="visibility: hidden;">
-                        <tr>
-                            <th class="contact-item1">Title</th>
-                            <th class="contact-item1">Filename</th>
-                            <th class="contact-item1">Progress</th>
-                            <th class="contact-item1" id="P0ID">ID</th>
-                        </tr>
-                        <tr id="Paper1" style="visibility: hidden;">
-                            <td class="contact-body1" id="P1Title">
-                                <div class="tbInner" id="P1TitleBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P1File">
-                                <div class="tbInner" id="P1FileBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P1Progress">
-                                <div class="tbInner" id="P1ProgressBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P1ID">
-                                <div class="tbInner" id="P1IDBox"></div>
-                            </td>
-                        </tr>
-                        <tr id="Paper2" style="visibility: hidden;">
-                            <td class="contact-body1" id="P2Title">
-                                <div class="tbInner" id="P2TitleBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P2File">
-                                <div class="tbInner" id="P2FileBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P2Progress">
-                                <div class="tbInner" id="P2ProgressBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P2ID">
-                                <div class="tbInner" id="P2IDBox"></div>
-                            </td>
-                        </tr>
-                        <tr id="Paper3" style="visibility: hidden;">
-                            <td class="contact-body1" id="P3Title">
-                                <div class="tbInner" id="P3TitleBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P3File">
-                                <div class="tbInner" id="P3FileBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P3Progress">
-                                <div class="tbInner" id="P3ProgressBox"></div>
-                            </td>
-                            <td class="contact-body1" id="P3ID">
-                                <div class="tbInner" id="P3IDBox"></div>
-                            </td>
-                        </tr>
-                    </table>
+                    <p class="c-txtsp" id="absDefault">Now Loading...</p>
+                    <div class="button-panel" style="display: none;" id="postButton">
+                        <button class="button" id="movePost">アブストラクト投稿</button>
+                    </div>
+                    <div id="absBody" style="display: none;" class="textBox">
+                        <p id="title" class="underLine"></p>
+                        <div id="absMain"></div>
+                    </div>
 
                 </div>
             </div>

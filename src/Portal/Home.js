@@ -2,7 +2,7 @@ import "../css/Form.css";
 import { userSignOut, userCheck, userDeleteAccount, auth } from "../firebaseModule/Authentication";
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebaseModule/Firestore";
-import { genRefList, delFolder, generateReference, testfunc } from "../firebaseModule/Storage";
+import { genRefList, delFolder } from "../firebaseModule/Storage";
 
 window.onload = async function () {
     let user = await userCheck();
@@ -17,12 +17,6 @@ const moveMypage = document.getElementById("moveMyPage");
 moveMypage.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = "./MyPage.html";
-});
-
-const movePostpage = document.getElementById("movePostPage");
-movePostpage.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = "./PostPage.html";
 });
 
 const signOutButton = document.getElementById("signOut");

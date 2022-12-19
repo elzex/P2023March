@@ -29,3 +29,13 @@
 .button:hover {
     background: #ee3e52;
 }
+
+.textBox {
+    padding: 1em;
+    position: relative;
+    border: 2px solid #555;
+}
+
+.underLine {
+    border-bottom: 1px solid #000000;
+}

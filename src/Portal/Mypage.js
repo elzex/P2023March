@@ -5,13 +5,15 @@ import "../css/Table.css";
 
 import { userCheck } from "../firebaseModule/Authentication";
 import { setUserData } from "./Mypage/setProfileData";
-//import { setPaperData } from "./Mypage/setPaperData"
+import { getUserData } from "../firebaseModule/Firestore";
+import { checkAbstract } from "./Mypage/abstract";
 
 window.onload = function () {
-    userCheck().then((user) => {
-        console.log(user.uid);
-        setUserData(user.uid);
-        //setPaperData(user.uid);
+    userCheck().then(async (user) => {
+        //console.log(user.uid);
+        const data = await getUserData(user.uid);
+        setUserData(data);
+        checkAbstract(data);
     }).catch(() => {
         window.location.href = "../index.html";
     });
