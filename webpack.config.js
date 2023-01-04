@@ -22,10 +22,10 @@ module.exports = {
       config: [__filename]
     }
   },
-  entry: './src/Portal/Mypage.js',
+  entry: './src/Portal/Abstract.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'Portal/script/Mypage.js'
+    filename: 'Portal/script/Abstract.js'
   },
   watch: true,
 }

@@ -163,3 +163,8 @@ select::-ms-expand {
     margin: 0 6px 0 0;
     position: relative;
 }
+
+.table {
+    margin-left: auto;
+    margin-right: auto;
+}

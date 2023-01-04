@@ -19,6 +19,12 @@ moveMypage.addEventListener("click", (e) => {
     window.location.href = "./MyPage.html";
 });
 
+const moveAbsPage = document.getElementById("moveAbsPage");
+moveAbsPage.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "./Abstract.html";
+});
+
 const signOutButton = document.getElementById("signOut");
 signOutButton.addEventListener("click", () => {
     userSignOut();
