@@ -41,3 +41,8 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.button-center {
+    margin: auto;
+    padding: 5px;
+}

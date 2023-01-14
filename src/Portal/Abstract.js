@@ -1,6 +1,8 @@
 import "../css/Form.css";
 import "../css/popup.css";
 import "../css/Mypage.css";
+import "../css/Table.css";
+import "../css/Button.css";
 import { userCheck } from "../firebaseModule/Authentication";
 import { doc, getDoc } from "firebase/firestore";
 import { getUserData, db } from "../firebaseModule/Firestore";
@@ -39,18 +41,17 @@ function generateTable(data) {
 		let body = data[id];
 		for (let i = 0; i < 2; i++) {
 			let td = document.createElement('td');
+			td.className = 'abstd'
 			td.textContent = body[i];
 			tr.appendChild(td);
 		}
 
 		let btd = document.createElement('td');
 		let bdiv = document.createElement('div');
-		bdiv.className = 'button-panel';
+		bdiv.className = 'button-panel button-center';
 		let btn = document.createElement('button');
-		btn.className = 'button';
+		btn.className = 'button button-center';
 		btn.innerHTML = "閲覧";
-		btn.id = 'viewbtn';
-		btn.value = id;
 		btn.onclick = function () {
 			viewAbstract(body);
 		};
