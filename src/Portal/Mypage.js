@@ -8,7 +8,7 @@ import { doc, setDoc, serverTimestamp, updateDoc, getDoc } from "firebase/firest
 
 import { userCheck } from "../firebaseModule/Authentication";
 import { setUserData } from "./Mypage/setProfileData";
-import { getUserData, db } from "../firebaseModule/Firestore";
+import { getUserData, db, getAbsIDList } from "../firebaseModule/Firestore";
 import { checkAbstract } from "./Mypage/abstract";
 
 let uid;
@@ -40,13 +40,16 @@ form.addEventListener("submit", async (e) => {
 
     const docRef = doc(db, "Account", uid);
     const absRef = doc(db, "Abstract", "list");
+    let uids = await getAbsIDList();
+    uids.push(uid);
     updateDoc(docRef, {
         abs: abs
     }).catch((e) => {
         console.log(e);
     }).then(async () => {
         updateDoc(absRef, {
-            [uid]: abslist
+            [uid]: abslist,
+            ID: uids
         }).then(() => {
             alert("投稿完了");
             window.location.reload();

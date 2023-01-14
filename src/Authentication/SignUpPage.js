@@ -72,6 +72,12 @@ function SignUp(mail, pass) {
         titlevalue = "Participation only";
     }
 
+    userCheck().then((user) => {
+        console.log(user.uid);
+    }).catch(() => {
+        //console.log("test");
+    });
+
     userSignUp(mail, pass).then(async (user) => {
         console.log(user);
         const docRef = doc(db, "Account", user.uid);
