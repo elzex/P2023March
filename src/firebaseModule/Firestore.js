@@ -23,7 +23,7 @@ export async function getAbsIDList() {
 	if (docSnap.exists()) {
 		//console.log(docSnap.data());
 		const list = docSnap.data().ID;
-		console.log(list);
+		//console.log(list);
 		return list;
 	} else {
 		console.log("No such document!");
