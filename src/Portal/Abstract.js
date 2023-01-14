@@ -1,16 +1,15 @@
 import "../css/Form.css";
+import "../css/popup.css";
+import "../css/Mypage.css";
 import { userCheck } from "../firebaseModule/Authentication";
 import { doc, getDoc } from "firebase/firestore";
 import { getUserData, db } from "../firebaseModule/Firestore";
 
-let uid;
-let data;
-
 window.onload = function () {
 	userCheck().then(async (user) => {
 		//console.log(user.uid);
-		uid = user.uid
-		data = await getUserData(uid);
+		let uid = user.uid
+		let data = await getUserData(uid);
 	}).catch((e) => {
 		console.log(e);
 		//window.location.href = "../index.html";
@@ -23,11 +22,9 @@ async function setTable() {
 	const absRef = doc(db, "Abstract", "list");
 	const docSnap = await getDoc(absRef);
 	if (docSnap.exists()) {
-		console.log(docSnap.data());
+		//console.log(docSnap.data());
 		const data = docSnap.data();
 		generateTable(data);
-		//console.log(data);
-		//console.log(btns);
 	} else {
 		console.log("No such document!");
 	}
@@ -55,7 +52,7 @@ function generateTable(data) {
 		btn.id = 'viewbtn';
 		btn.value = id;
 		btn.onclick = function () {
-			viewAbstract(id);
+			viewAbstract(body);
 		};
 		bdiv.appendChild(btn);
 		btd.appendChild(bdiv);
@@ -64,6 +61,21 @@ function generateTable(data) {
 	}
 }
 
-function viewAbstract(uid) {
-	console.log(uid);
+const popup = document.getElementById('popup')
+function viewAbstract(data) {
+	//console.log(data);
+	popup.style.display = 'block';
+	setAbs(data);
+}
+
+const close = document.getElementById("close-popup");
+close.addEventListener("click", () => {
+	popup.style.display = "none";
+});
+
+const title = document.getElementById("title");
+const absMain = document.getElementById("absMain");
+function setAbs(arr) {
+	title.textContent = arr[1];
+	absMain.textContent = arr[2];
 }
