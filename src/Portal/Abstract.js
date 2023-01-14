@@ -80,3 +80,8 @@ function setAbs(arr) {
 	title.textContent = arr[1];
 	absMain.textContent = arr[2];
 }
+
+const back = document.getElementById('back');
+back.addEventListener('click', () => {
+	window.location.href = "./Home.html";
+});
