@@ -7,7 +7,7 @@ import { genRefList, delFolder } from "../firebaseModule/Storage";
 window.onload = async function () {
     let user = await userCheck();
     if (user) {
-        console.log(user);
+        //console.log(user);
     } else {
         window.location.href = "../index.html";
     }
@@ -32,6 +32,7 @@ signOutButton.addEventListener("click", () => {
     window.location.href = "../index.html";
 });
 
+/*
 const deleteAccount = document.getElementById("delAccount");
 deleteAccount.addEventListener("click", function (e) {
     e.preventDefault();
@@ -46,6 +47,7 @@ deleteAccount.addEventListener("click", function (e) {
         console.log(eCode, eMessage);
     })
 });
+*/
 
 function deleteUserData() {
     return new Promise(async (resolve) => {

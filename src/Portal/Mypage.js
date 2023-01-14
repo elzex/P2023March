@@ -4,7 +4,7 @@ import "../css/Tab.css";
 import "../css/Table.css";
 import "../css/popup.css";
 
-import { doc, setDoc, serverTimestamp, updateDoc, getDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 import { userCheck } from "../firebaseModule/Authentication";
 import { setUserData } from "./Mypage/setProfileData";
@@ -15,15 +15,28 @@ let uid;
 let data;
 window.onload = function () {
     userCheck().then(async (user) => {
-        //console.log(user.uid);
         uid = user.uid
         data = await getUserData(uid);
         setUserData(data);
         checkAbstract(data);
+        checkParticipate();
     }).catch((e) => {
         console.log(e);
-        //window.location.href = "../index.html";
+        window.location.href = "../index.html";
     });
+}
+
+const p = document.getElementsByClassName('tab_item');
+function checkParticipate() {
+    if (data.Title == "Participation only") {
+        p[0].style.display = "block";
+        p[0].style.width = "100%";
+
+    } else {
+        for (let i = 0; i < p.length; i++) {
+            p[i].style.display = "block";
+        }
+    }
 }
 
 const back = document.getElementById("back");

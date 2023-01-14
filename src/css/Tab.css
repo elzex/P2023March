@@ -26,6 +26,7 @@ https://bagelee.com/design/css/create_tabs_using_only_css/
     text-align: center;
     font-weight: bold;
     transition: all 0.2s ease;
+    display: none;
 }
 
 .tab_item:hover {
@@ -48,8 +49,7 @@ input[name="tab_item"] {
 
 /*選択されているタブのコンテンツのみを表示*/
 #profileData:checked~#profileData_content,
-#paperData:checked~#paperData_content,
-#paymentData:checked~#paymentData_content {
+#paperData:checked~#paperData_content{
     display: block;
 }
 
@@ -57,4 +57,20 @@ input[name="tab_item"] {
 .tabs input:checked+.tab_item {
     background-color: #5ab4bd;
     color: #fff;
+}
+
+.tab_item_single {
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    display: none;
 }
