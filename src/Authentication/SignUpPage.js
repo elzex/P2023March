@@ -26,7 +26,7 @@ form.addEventListener("submit", (e) => {
     perr.textContent = "";
     const mail = e.target.eMail.value;
     const part = e.target.Participate.value;
-    const title = e.target.Title.value;
+    //const title = e.target.Title.value;
     let flag = true;
     let pass1 = e.target.Password1;
     let pass2 = e.target.Password2;
@@ -38,10 +38,12 @@ form.addEventListener("submit", (e) => {
         flag = false;
     }
 
+    /*
     if (part == "Y" && title == "") {
         perr.textContent = "講演題目を入力してください"
         flag = false;
     }
+    */
 
     if (flag) {
         SignUp(mail, pass1.value);
@@ -51,8 +53,12 @@ form.addEventListener("submit", (e) => {
     }
 });
 
+
 const participate = document.getElementById("Participate");
+
+/*
 let tForm = document.getElementById("tForm");
+
 participate.onchange = function () {
     let v = participate.value;
     if (v == "Y") {
@@ -62,14 +68,15 @@ participate.onchange = function () {
         tForm.value = "";
     }
 }
+*/
 
 function SignUp(mail, pass) {
     const v = participate.value;
     let titlevalue;
     if (v == "Y") {
-        titlevalue = form.Title.value;
+        titlevalue = 1;
     } else {
-        titlevalue = "Participation only";
+        titlevalue = 0;
     }
 
     userCheck().then((user) => {
@@ -91,7 +98,7 @@ function SignUp(mail, pass) {
             PreferredTime: form.PreferredTime.value,
             Schedule: form.Schedule.value,
             Support: form.Support.value,
-            Title: titlevalue,
+            Presen: titlevalue,
             UserID: user.uid,
             eMail: form.eMail.value,
             signUpTime: serverTimestamp()

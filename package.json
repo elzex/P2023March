@@ -18,17 +18,17 @@
   },
   "homepage": "https://github.com/elzex/Workspace#readme",
   "devDependencies": {
-    "@babel/core": "^7.19.6",
-    "@babel/preset-env": "^7.19.4",
-    "babel-loader": "^8.2.5",
-    "css-loader": "^6.7.1",
-    "firebase": "^9.12.1",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "firebase": "^9.15.0",
     "jsqr": "^1.4.0",
     "qrcode": "^1.5.1",
     "style-loader": "^3.3.1",
     "video.js": "^7.20.3",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
   }
 }

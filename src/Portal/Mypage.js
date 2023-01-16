@@ -28,7 +28,7 @@ window.onload = function () {
 
 const p = document.getElementsByClassName('tab_item');
 function checkParticipate() {
-    if (data.Title == "Participation only") {
+    if (data.Presen == 0) {
         p[0].style.display = "block";
         p[0].style.width = "100%";
 
@@ -48,8 +48,8 @@ const form = document.forms[0];
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const abs = [data.Title, e.target.absInput.value];
-    const abslist = [data.Name, data.Title, e.target.absInput.value]
+    const abs = [e.target.absTitle.value, e.target.absInput.value];
+    const abslist = [data.Name, e.target.absTitle.value, e.target.absInput.value]
 
     const docRef = doc(db, "Account", uid);
     const absRef = doc(db, "Abstract", "list");
