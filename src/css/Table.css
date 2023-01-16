@@ -9,7 +9,7 @@
 .profile-table th {
     background-color: whitesmoke;
     border: 2px black solid;
-    width: auto;
+    width: 30%;
 }
 
 .profile-table td {
