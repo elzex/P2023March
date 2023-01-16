@@ -5,13 +5,21 @@ const TabTitle = document.getElementById("Title");
 export function setUserData(data) {
     if (data != 0) {
         let parValue;
-        if (data.Title == "Participation only") {
+        if (data.Presen == 0) {
             TabTitle.style.display = "none";
             parValue = "参加のみ";
-        } else {
+        } else if (data.Presen == 1) {
+            let titleCheck;
             parValue = "講演有り";
-            Table.TitleBody.innerHTML = data.Title;
+            if (data.abs != undefined) {
+                titleCheck = data.abs[0];
+            } else {
+                titleCheck = "未投稿";
+            }
+            //console.log(titleCheck);
+            Table.TitleBody.innerHTML = titleCheck;
         }
+
         Table.ParticipationBody.innerHTML = parValue;
 
         Table.Aff.innerHTML = data.Affiliation;

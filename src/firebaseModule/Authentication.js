@@ -20,6 +20,7 @@ export const userSignUp = (mail, pass) => {
             const eCode = e.code;
             const eMessage = e.message;
             console.log(eCode, eMessage);
+            alert(eCode, eMessage);
         });
     });
 }

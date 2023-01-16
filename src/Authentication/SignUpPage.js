@@ -115,6 +115,11 @@ function SignUp(mail, pass) {
             console.log(eCode, eMessage);
             alert(eCode, eMessage)
         });
+    }).catch((e) => {
+        const eCode = e.code;
+        const eMessage = e.message;
+        console.log(eCode, eMessage);
+        alert(eCode, eMessage)
     })
 }
 
