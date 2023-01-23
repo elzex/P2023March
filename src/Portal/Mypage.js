@@ -54,6 +54,7 @@ form.addEventListener("submit", async (e) => {
     const docRef = doc(db, "Account", uid);
     const absRef = doc(db, "Abstract", "list");
     let uids = await getAbsIDList();
+    console.log(uids);
     uids.push(uid);
     updateDoc(docRef, {
         abs: abs

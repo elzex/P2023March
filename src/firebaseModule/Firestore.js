@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { app } from "./config";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
@@ -22,8 +21,13 @@ export async function getAbsIDList() {
 	const docSnap = await getDoc(docRef);
 	if (docSnap.exists()) {
 		//console.log(docSnap.data());
-		const list = docSnap.data().ID;
+		let list;
 		//console.log(list);
+		if (docSnap.data().ID == undefined) {
+			list = []
+		} else {
+			list = docSnap.data().ID;
+		}
 		return list;
 	} else {
 		console.log("No such document!");
