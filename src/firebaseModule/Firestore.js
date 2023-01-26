@@ -1,5 +1,5 @@
 import { app } from "./config";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, arrayUnion, updateDoc } from "firebase/firestore";
 
 export const db = getFirestore(app);
 
@@ -33,4 +33,22 @@ export async function getAbsIDList() {
 		console.log("No such document!");
 		return 0;
 	}
+}
+
+export async function setAbsList(ID, abs, abslist) {
+	const docRef = doc(db, "Account", ID);
+	const absRef = doc(db, "Abstract", "list");
+	updateDoc(absRef, {
+		ID: arrayUnion(ID),
+		[ID]: abslist
+	}).then(() => {
+		updateDoc(docRef, {
+			abs: abs
+		}).then(() => {
+			alert("投稿完了");
+			window.location.reload();
+		})
+	}).catch((e) => {
+		alert(e);
+	});
 }

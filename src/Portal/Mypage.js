@@ -4,11 +4,10 @@ import "../css/Tab.css";
 import "../css/Table.css";
 import "../css/popup.css";
 
-import { doc, updateDoc } from "firebase/firestore";
 
 import { userCheck } from "../firebaseModule/Authentication";
 import { setUserData } from "./Mypage/setProfileData";
-import { getUserData, db, getAbsIDList } from "../firebaseModule/Firestore";
+import { getUserData, setAbsList } from "../firebaseModule/Firestore";
 import { checkAbstract } from "./Mypage/abstract";
 
 let uid;
@@ -51,22 +50,5 @@ form.addEventListener("submit", async (e) => {
     const abs = [e.target.absTitle.value, e.target.absInput.value];
     const abslist = [data.Name, e.target.absTitle.value, e.target.absInput.value]
 
-    const docRef = doc(db, "Account", uid);
-    const absRef = doc(db, "Abstract", "list");
-    let uids = await getAbsIDList();
-    console.log(uids);
-    uids.push(uid);
-    updateDoc(docRef, {
-        abs: abs
-    }).catch((e) => {
-        console.log(e);
-    }).then(async () => {
-        updateDoc(absRef, {
-            [uid]: abslist,
-            ID: uids
-        }).then(() => {
-            alert("投稿完了");
-            window.location.reload();
-        });
-    });
+    await setAbsList(uid, abs, abslist);
 });

@@ -22,10 +22,10 @@ module.exports = {
       config: [__filename]
     }
   },
-  entry: './src/toCSV/toCSV.js',
+  entry: './src/Portal/Mypage.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'toCSV/script/toCSV.js'
+    filename: 'Portal/script/Mypage.js'
   },
   watch: true,
 }
