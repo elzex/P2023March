@@ -1,0 +1,43 @@
+.QR {
+	width: 300px;
+	height: 300px;
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+body {
+	background: #e9e9e9;
+	color: #5e5e5e;
+	font: 400 87.5%/1.5em 'Open Sans', sans-serif;
+	background-color: rgb(231, 220, 220);
+}
+
+.pagewrapper {
+	background: #fafafa;
+	margin: 3em auto;
+	padding: 10px;
+	max-width: 40%;
+	text-align: center;
+}
+
+table {
+	padding: auto;
+	margin: auto;
+	color: black;
+	border-collapse: collapse;
+	border: 2px solid black;
+}
+
+td {
+	border-collapse: collapse;
+	border: 2px solid black;
+}
+
+#dataTable {
+	display: none;
+	margin: 5px;
+}

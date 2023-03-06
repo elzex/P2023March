@@ -1,5 +1,8 @@
 const path = require('path');
 
+const epath1 = "ManagementTool";
+const epath2 = "dataReader.js";
+
 module.exports = {
   mode: 'development',
   module: {
@@ -22,10 +25,11 @@ module.exports = {
       config: [__filename]
     }
   },
-  entry: './src/Portal/Mypage.js',
+  entry: './src/' + epath1 + "/" + epath2,
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'Portal/script/Mypage.js'
+    filename: epath1 + "/script/" + epath2
+    //filename: "./index.js"
   },
   watch: true,
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QRReader</title>
+</head>
+
+<body>
+	<div class="pagewrapper">
+		<h1>QRReader</h1>
+		<button type="button" id="start">restart</button>
+		<button type="button" id="stop">stop</button>
+		<div id="QRarea">
+			<video id="video" class="QR" style="display: none;" playsinline></video>
+			<canvas id="pic" class="QR" style="display: none;" playsinline></canvas>
+		</div>
+		<div id="dataTable">
+			<table id="table">
+				<tr>
+					<th colspan="2">User Data</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<script src="./script/dataReader.js"></script>
+</body>
