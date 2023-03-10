@@ -13,6 +13,16 @@
 		<h1>QRReader</h1>
 		<button type="button" id="start">restart</button>
 		<button type="button" id="stop">stop</button>
+		<button type="button" id="check" style="display: none;">check</button>
+
+		<div>
+			<label for="checkMode">チェックモード</label>
+			<div class="toggle-switch" style="display: inline-block; _display: inline;">
+				<input id="checkMode" class="toggle-input" type='checkbox' />
+				<label for="checkMode" class="toggle-label" />
+			</div>
+		</div>
+
 		<div id="QRarea">
 			<video id="video" class="QR" style="display: none;" playsinline></video>
 			<canvas id="pic" class="QR" style="display: none;" playsinline></canvas>

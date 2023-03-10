@@ -1,19 +1,17 @@
 import { getUserData } from "../firebaseModule/Firestore"
+import { userCheck } from "../firebaseModule/Authentication";
+import { startCamera, stopCamera, canvasUpdate, isSmartPhone } from "./module/videoControl";
+import { addCheckData } from "./module/addCheck"
+import { format } from "date-fns"
 
 import "./css/QRReader.css";
-
-import { startCamera, stopCamera, canvasUpdate, isSmartPhone } from "./module/videoControl";
-import { userCheck } from "../firebaseModule/Authentication"
+import "./css/toggle.css"
 
 const video = document.getElementById("video");
 
 let cameraConfig;
 
 window.onload = async function () {
-	userCheck().then((user) => {
-		console.log(user.uid);
-	}).catch(() => {
-	});
 	if (isSmartPhone()) {
 		cameraConfig = {
 			audio: false,
@@ -35,9 +33,17 @@ window.onload = async function () {
 			}
 		};
 	}
+
+	await userCheck().then((user) => {
+		console.log(user.uid);
+	}).catch(() => {
+		console.log("error account data is not find");
+	});
+
 	start();
 }
 
+let uid;
 async function start() {
 	QRarea.style.display = "block";
 	dTable.style.display = "none";
@@ -53,7 +59,6 @@ async function start() {
 	startCamera(video, cameraConfig);
 	pic.style.display = "block";
 	let flag = true;
-	let uid;
 	while (flag) {
 		await canvasUpdate(video, pic).then((id) => {
 			flag = false;
@@ -63,11 +68,15 @@ async function start() {
 			//console.log("b");
 		});
 	}
-	const data = await getUserData(uid);
-	console.log(data);
-	QRarea.style.display = "none";
-	//testObj(data)
-	genTable(data);
+	if (checkMode) {
+		addCheckData(uid);
+	} else {
+		const data = await getUserData(uid);
+		console.log(data);
+		QRarea.style.display = "none";
+		//testObj(data)
+		genTable(data);
+	}
 }
 
 const startBtn = document.getElementById("start");
@@ -75,6 +84,7 @@ const pic = document.getElementById("pic");
 const QRarea = document.getElementById("QRarea");
 startBtn.addEventListener("click", async function () {
 	start();
+	cbtn.style.display = "none";
 });
 
 const stopBtn = document.getElementById("stop");
@@ -98,13 +108,24 @@ function genTable(obj) {
 	obj = Object.fromEntries(temp);
 	console.log(obj);
 
+	if (obj.Banquet == undefined) {
+		cbtn.style.display = "inline";
+	} else {
+		cbtn.style.display = "none";
+	}
+
 	Object.keys(obj).forEach(function (key) {
-		if (key != "signUpTime" && key != "abs") {
+		if (key != "abs") {
 			console.log(key + ":" + obj[key]);
 			let tr = document.createElement('tr');
 			let td1 = document.createElement('td');
 			let td2 = document.createElement('td');
 			let body = obj[key];
+			if (key == "BanquetTime" || key == "signUpTime") {
+				body = format(new Date(body.seconds * 1000), 'yyyy/MM/dd HH:mm')
+
+				console.log(body);
+			}
 			if (obj[key] == "") {
 				body = "None"
 			}
@@ -116,3 +137,15 @@ function genTable(obj) {
 		}
 	});
 }
+
+let checkMode = false;
+const cm = document.getElementById("checkMode");
+cm.addEventListener("click", function () {
+	checkMode = cm.checked
+	console.log(checkMode);
+});
+
+const cbtn = document.getElementById("check");
+cbtn.addEventListener("click", function () {
+	addCheckData(uid);
+});
