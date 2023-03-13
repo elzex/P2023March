@@ -121,7 +121,7 @@ function genTable(obj) {
 			let td1 = document.createElement('td');
 			let td2 = document.createElement('td');
 			let body = obj[key];
-			if (key == "BanquetTime" || key == "signUpTime") {
+			if (key == "BanquetTime" || key == "signUpTime" || key == "PresenDate") {
 				body = format(new Date(body.seconds * 1000), 'yyyy/MM/dd HH:mm')
 
 				console.log(body);
