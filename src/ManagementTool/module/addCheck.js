@@ -8,14 +8,13 @@ export async function addCheckData(uid) {
 	const docSnap = await getDoc(userRef);
 	if (docSnap.exists()) {
 		const data = docSnap.data();
-		if (data.Banquet == undefined) {
+		if (data.Banquet == false) {
 			await updateDoc(userRef, {
-				Banquet: true,
-				BanquetTime: serverTimestamp()
+				Ticket: true,
+				TicketTime: serverTimestamp()
 			}).then(async function () {
 				await updateDoc(checkRef, {
-					[uid]: true,
-					ID: arrayUnion(uid)
+					check: arrayUnion(uid)
 				}).then(function () {
 					console.log("complete");
 				});

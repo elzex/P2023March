@@ -5,7 +5,7 @@ import { addCheckData } from "./module/addCheck"
 import { format } from "date-fns"
 
 import "./css/QRReader.css";
-import "./css/toggle.css"
+import "./css/toggle.css";
 
 const video = document.getElementById("video");
 
@@ -108,7 +108,7 @@ function genTable(obj) {
 	obj = Object.fromEntries(temp);
 	console.log(obj);
 
-	if (obj.Banquet == undefined) {
+	if (!obj.Banquet) {
 		cbtn.style.display = "inline";
 	} else {
 		cbtn.style.display = "none";
@@ -123,7 +123,6 @@ function genTable(obj) {
 			let body = obj[key];
 			if (key == "BanquetTime" || key == "signUpTime" || key == "PresenDate") {
 				body = format(new Date(body.seconds * 1000), 'yyyy/MM/dd HH:mm')
-
 				console.log(body);
 			}
 			if (obj[key] == "") {
