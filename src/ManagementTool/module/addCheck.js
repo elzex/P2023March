@@ -8,7 +8,7 @@ export async function addCheckData(uid) {
 	const docSnap = await getDoc(userRef);
 	if (docSnap.exists()) {
 		const data = docSnap.data();
-		if (data.Banquet == false) {
+		if (data.Ticket == false) {
 			await updateDoc(userRef, {
 				Ticket: true,
 				TicketTime: serverTimestamp()
@@ -17,6 +17,7 @@ export async function addCheckData(uid) {
 					check: arrayUnion(uid)
 				}).then(function () {
 					console.log("complete");
+					alert("チェック完了")
 				});
 			}).catch((e) => {
 				const eCode = e.code;

@@ -2,7 +2,7 @@ const path = require('path');
 
 const epath1 = "ManagementTool";
 const tpath1 = "";
-const epath2 = "list.js";
+const epath2 = "dataReader.js";
 
 module.exports = {
   mode: 'development',

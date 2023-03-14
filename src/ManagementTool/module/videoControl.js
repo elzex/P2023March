@@ -12,8 +12,7 @@ export function startCamera(vElement, cfg) {
 }
 
 export function stopCamera(vElement) {
-	const tracks = vElement.srcObject.getTracks();
-
+	let tracks = vElement.srcObject.getTracks();
 	tracks.forEach(function (track) {
 		track.stop();
 	});

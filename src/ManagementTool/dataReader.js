@@ -64,6 +64,7 @@ async function start() {
 			flag = false;
 			uid = id;
 			console.log(uid);
+			pic.clearRect(0, 0, 200, 200);;
 		}).catch(() => {
 			//console.log("b");
 		});
@@ -108,7 +109,7 @@ function genTable(obj) {
 	obj = Object.fromEntries(temp);
 	console.log(obj);
 
-	if (!obj.Banquet) {
+	if (!obj.Ticket) {
 		cbtn.style.display = "inline";
 	} else {
 		cbtn.style.display = "none";
@@ -121,7 +122,7 @@ function genTable(obj) {
 			let td1 = document.createElement('td');
 			let td2 = document.createElement('td');
 			let body = obj[key];
-			if (key == "BanquetTime" || key == "signUpTime" || key == "PresenDate") {
+			if (key == "TicketTime" || key == "signUpTime" || key == "PresenDate") {
 				body = format(new Date(body.seconds * 1000), 'yyyy/MM/dd HH:mm')
 				console.log(body);
 			}
