@@ -79,13 +79,15 @@ tbtn.addEventListener("click", async function () {
 	tl.style.display = "block"
 	if (!tflag) {
 		const c = await getCheckData("checkData");
-		genTable("ticTable", c);
+		gencData("ticTable", c);
 		tflag = true;
 	}
 });
 
 function genTable(tbl, data) {
 	const table = document.getElementById(tbl);
+	console.log(data);
+	console.log(ID);
 	for (let i = 0; i < ID.length; i++) {
 		let tr = document.createElement('tr');
 		let td1 = document.createElement('td');
@@ -93,13 +95,13 @@ function genTable(tbl, data) {
 		td1.textContent = Name[i];
 		tr.appendChild(td1);
 		let body;
-		console.log(data[i]);
-		if (data[i]) {
+		if (data[i] != false) {
 			body = "true";
 		} else {
 			body = "false";
 			td2.style.color = "red";
 		}
+
 		td2.textContent = body;
 		tr.appendChild(td2);
 		table.appendChild(tr);
@@ -114,4 +116,42 @@ async function getCheckData(col) {
 		console.log(data.check);
 		return data.check;
 	}
+}
+
+function gencData(tbl, data) {
+	const table = document.getElementById(tbl);
+	console.log(data);
+	console.log(ID);
+	let arr = check(data);
+	for (let i = 0; i < ID.length; i++) {
+		let tr = document.createElement('tr');
+		let td1 = document.createElement('td');
+		let td2 = document.createElement('td');
+		td1.textContent = Name[i];
+		tr.appendChild(td1);
+
+		if (arr[i] == "true") {
+			td2.style.color = "green";
+		} else {
+			td2.style.color = "red";
+		}
+		td2.textContent = arr[i];
+		tr.appendChild(td2);
+		table.appendChild(tr);
+	}
+}
+
+function check(data) {
+	let arr = []
+	for (let i = 0; i < ID.length; i++) {
+		for (let j = 0; j < data.length; j++) {
+			if (ID[i] == data[j]) {
+				arr[i] = "true";
+			} else if (arr[i] != "true") {
+				arr[i] = "false";
+			}
+		}
+	}
+	console.log(arr);
+	return arr;
 }

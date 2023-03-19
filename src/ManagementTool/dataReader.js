@@ -129,6 +129,17 @@ function genTable(obj) {
 			if (obj[key] == "") {
 				body = "None"
 			}
+			if (key == "Ticket") {
+				if (obj[key] == true) {
+					td2.style.color = "blue"
+				} else {
+					td2.style.color = "red"
+				}
+				key = "Check"
+			}
+			if (key == "TicketTime") {
+				key = "CheckTime";
+			}
 			td1.textContent = key;
 			tr.appendChild(td1);
 			td2.textContent = body;
